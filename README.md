@@ -1,5 +1,7 @@
 # Transfer subsidy production data from `app-digitaal-loket` to `app-subsidie-loket`
 
+Guide based on [https://github.com/Riadabd/export-and-import-lpdc-data](https://github.com/Riadabd/export-and-import-lpdc-data)
+
 ## Note on Virtuoso settings
 
 The following parameters must be changed inside `config/virtuoso/virtuoso-production.ini` before any data export/import was performed due to some types containing a large number of triples.
