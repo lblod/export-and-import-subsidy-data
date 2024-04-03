@@ -1,0 +1,15 @@
+DELETE {
+  GRAPH ?g {
+    ?s ?p ?o .
+  }
+}
+WHERE {
+  VALUES ?type {
+    <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>
+  }
+
+  GRAPH ?g {
+    ?s a ?type ;
+      ?p ?o .
+  }
+}

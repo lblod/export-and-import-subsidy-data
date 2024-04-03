@@ -1,0 +1,12 @@
+SELECT COUNT DISTINCT * WHERE {
+  VALUES ?type {
+    <http://schema.org/MonetaryAmount>
+  }
+
+  GRAPH ?g {
+    ?s a ?type ;
+      ?p ?o .
+  }
+
+  FILTER(regex(STR(?g), "(http://mu.semte.ch/graphs/organizations/.*/LoketLB-subsidies)"))
+}

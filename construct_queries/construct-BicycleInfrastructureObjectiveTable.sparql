@@ -1,0 +1,18 @@
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+
+CONSTRUCT {
+  ?s ?p ?o ;
+    ext:wasInGraph ?g .
+}
+WHERE {
+  VALUES ?type {
+    <http://lblod.data.gift/vocabularies/subsidie/bicycle-infrastructure#ObjectiveTable>
+  }
+
+  GRAPH ?g {
+    ?s a ?type ;
+      ?p ?o .
+  }
+
+  FILTER(regex(STR(?g), "(http://mu.semte.ch/graphs/organizations/.*/LoketLB-subsidies)"))
+}
