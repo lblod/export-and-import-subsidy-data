@@ -1,0 +1,63 @@
+INSERT {
+  GRAPH ?g {
+   ?s ?p ?o .
+  }
+}
+WHERE {
+  VALUES ?h {
+    <http://mu.semte.ch/graphs/temp/ConsumptionSubsidy>
+    <http://mu.semte.ch/graphs/temp/ApplicationForm>
+    <http://mu.semte.ch/graphs/temp/Application>
+    <http://mu.semte.ch/graphs/temp/MonetaryAmount>
+    <http://mu.semte.ch/graphs/temp/Participation>
+    <http://mu.semte.ch/graphs/temp/BankAccount>
+    <http://mu.semte.ch/graphs/temp/Period>
+    <http://mu.semte.ch/graphs/temp/ApplicationFormTable>
+    <http://mu.semte.ch/graphs/temp/ApplicationFormEntry>
+    <http://mu.semte.ch/graphs/temp/EngagementTable>
+    <http://mu.semte.ch/graphs/temp/EngagementEntry>
+    <http://mu.semte.ch/graphs/temp/ContactPoint>
+    <http://mu.semte.ch/graphs/temp/DecisionAdministrativeUnit>
+    <http://mu.semte.ch/graphs/temp/SubsidyOffer>
+    <http://mu.semte.ch/graphs/temp/SubsidyOfferSeries>
+    <http://mu.semte.ch/graphs/temp/ConsumptionSubsidyStatus>
+    <http://mu.semte.ch/graphs/temp/ApplicationFlow>
+    <http://mu.semte.ch/graphs/temp/ApplicationStep>
+    <http://mu.semte.ch/graphs/temp/SubsidyStep>
+    <http://mu.semte.ch/graphs/temp/TimePeriod>
+    <http://mu.semte.ch/graphs/temp/AdministrativeUnitClassificationCode>
+    <http://mu.semte.ch/graphs/temp/GoverningBodyClassificationCode>
+    <http://mu.semte.ch/graphs/temp/GoverningBody>
+    <http://mu.semte.ch/graphs/temp/RemoteDataObject>
+    <http://mu.semte.ch/graphs/temp/SubmissionDocumentStatus>
+    <http://mu.semte.ch/graphs/temp/SubmissionDocument>
+    <http://mu.semte.ch/graphs/temp/Scope>
+    <http://mu.semte.ch/graphs/temp/Criterion>
+    <http://mu.semte.ch/graphs/temp/Co-habitationPlanEntry>
+    <http://mu.semte.ch/graphs/temp/Co-habitationPlanTable>
+    <http://mu.semte.ch/graphs/temp/Co-habitationPlanSubsidyWithdrawalRule>
+    <http://mu.semte.ch/graphs/temp/RequirementGroup>
+    <http://mu.semte.ch/graphs/temp/CriterionRequirement>
+    <http://mu.semte.ch/graphs/temp/Concept>
+    <http://mu.semte.ch/graphs/temp/DecisionUploadFormData>
+    <http://mu.semte.ch/graphs/temp/PicturesUploadFormData>
+    <http://mu.semte.ch/graphs/temp/ReportUploadFormData>
+    <http://mu.semte.ch/graphs/temp/AwardUploadFormData>
+    <http://mu.semte.ch/graphs/temp/AccountabilityUploadFormData>
+    <http://mu.semte.ch/graphs/temp/JustificationCostsUploadFormData>
+    <http://mu.semte.ch/graphs/temp/JustificationExpropriationsUploadFormData>
+    <http://mu.semte.ch/graphs/temp/InvoiceUploadFormData>
+    <http://mu.semte.ch/graphs/temp/EstimatedCostTable>
+    <http://mu.semte.ch/graphs/temp/EstimatedCostEntry>
+    <http://mu.semte.ch/graphs/temp/ObjectiveTable>
+    <http://mu.semte.ch/graphs/temp/ObjectiveEntry>
+    <http://mu.semte.ch/graphs/temp/AttachmentFormData>
+    <http://mu.semte.ch/graphs/temp/SignedPactFormData>
+  }
+
+  GRAPH ?h {
+    ?s a ?type ;
+       ?p ?o ;
+       ext:wasInGraph ?g .
+  }
+}
