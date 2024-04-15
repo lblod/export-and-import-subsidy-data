@@ -1,3 +1,5 @@
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+
 DELETE {
   GRAPH ?g {
    ?s ?p ?o .
