@@ -2,6 +2,17 @@
 
 Guide based on [https://github.com/Riadabd/export-and-import-lpdc-data](https://github.com/Riadabd/export-and-import-lpdc-data)
 
+## Queries
+
+If not in any graphs when querying
+-> no filter needed(?)
+
+If found in multiple graphs (bestuurseenheid, public and others)
+-> the filter should be set to FILTER on bestuurseenheid and public: `FILTER(regex(STR(?g), "(http://mu.semte.ch/graphs/organizations/.*/LoketLB-subsidies|http://mu.semte.ch/graphs/public)"))`
+
+If found in multiple graphs (bestuurseenheid and others)
+-> `FILTER(regex(STR(?g), "(http://mu.semte.ch/graphs/organizations/.*/LoketLB-subsidies)"))`
+
 ## Note on Virtuoso settings
 
 The following parameters must be changed inside `config/virtuoso/virtuoso-production.ini` before any data export/import was performed due to some types containing a large number of triples.

@@ -1,0 +1,16 @@
+PREFIX ext: <http://mu.semte.ch/vocabularies/ext/>
+
+CONSTRUCT {
+  ?s ?p ?o ;
+    ext:wasInGraph ?g .
+}
+WHERE {
+  VALUES ?type {
+    <http://data.vlaanderen.be/ns/subsidie#Aanvraag>
+  }
+
+  GRAPH ?g {
+    ?s a ?type ;
+      ?p ?o .
+  }
+}

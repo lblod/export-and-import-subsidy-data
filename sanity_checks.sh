@@ -7,8 +7,8 @@ OUT_FOLDER="tmp"
 OUT_FOLDER_LOKET="tmp_count_loket"
 OUT_FOLDER_SUBSIDY="tmp_count_subsidy"
 
-SUBSIDY_SPARQL_ENDPOINT="http://localhost:8890/sparql"
-LOKET_SPARQL_ENDPOINT="http://localhost:8892/sparql"
+SUBSIDY_SPARQL_ENDPOINT="http://localhost:8895/sparql"
+LOKET_SPARQL_ENDPOINT="http://localhost:8890/sparql"
 
 while :; do
   case $1 in
@@ -109,49 +109,49 @@ done
 echo "[INFO] Export done! You can find your count export(s) in $OUT_FOLDER_LOKET and $OUT_FOLDER_SUBSIDY."
 echo "[INFO] Count results for types are in results/sanity_type_count_results.csv"
 
-if [ -f "./tmp_select_output/select_non_eredienst_bestuurseenheden_having_instance_public_services.csv" ]; then
-  while IFS="," read -r h bestuursType label; do
-    string=$(cat << EOF
-SELECT COUNT DISTINCT * WHERE {
-  GRAPH <$h> {
-    ?s a <http://purl.org/vocab/cpsv#PublicService> ;
-      ?p ?o .
-  }
-}
-EOF
-)
+# if [ -f "./tmp_select_output/select_non_eredienst_bestuurseenheden_having_instance_public_services.csv" ]; then
+#   while IFS="," read -r h bestuursType label; do
+#     string=$(cat << EOF
+# SELECT COUNT DISTINCT * WHERE {
+#   GRAPH <$h> {
+#     ?s a <http://purl.org/vocab/cpsv#PublicService> ;
+#       ?p ?o .
+#   }
+# }
+# EOF
+# )
 
-    subsidy_bestuurs_count=0
-    loket_bestuurs_count=0
+#     subsidy_bestuurs_count=0
+#     loket_bestuurs_count=0
 
-    if curl --fail -X POST "$SUBSIDY_SPARQL_ENDPOINT" \
-      -H 'Accept: text/csv' \
-      --form-string "query=$string" > "$OUT_FOLDER"/count_results.csv; then
+#     if curl --fail -X POST "$SUBSIDY_SPARQL_ENDPOINT" \
+#       -H 'Accept: text/csv' \
+#       --form-string "query=$string" > "$OUT_FOLDER"/count_results.csv; then
 
-      subsidy_bestuurs_count=$(cat "$OUT_FOLDER"/count_results.csv | tail -n +2)
-    else
-      echo "[ERROR] "
-      FAILED+=1
-    fi;
+#       subsidy_bestuurs_count=$(cat "$OUT_FOLDER"/count_results.csv | tail -n +2)
+#     else
+#       echo "[ERROR] "
+#       FAILED+=1
+#     fi;
 
-    if curl --fail -X POST "$LOKET_SPARQL_ENDPOINT" \
-      -H 'Accept: text/csv' \
-      --form-string "query=$string" > "$OUT_FOLDER"/count_results.csv; then
+#     if curl --fail -X POST "$LOKET_SPARQL_ENDPOINT" \
+#       -H 'Accept: text/csv' \
+#       --form-string "query=$string" > "$OUT_FOLDER"/count_results.csv; then
 
-      loket_bestuurs_count=$(cat "$OUT_FOLDER"/count_results.csv | tail -n +2)
-    else
-      echo "[ERROR] Select for $type failed!"
-      FAILED+=1
-    fi;
+#       loket_bestuurs_count=$(cat "$OUT_FOLDER"/count_results.csv | tail -n +2)
+#     else
+#       echo "[ERROR] Select for $type failed!"
+#       FAILED+=1
+#     fi;
 
-    if [ $subsidy_bestuurs_count == $loket_bestuurs_count ]; then
-      echo "$bestuursType,$label,$loket_bestuurs_count,$subsidy_bestuurs_count,✅" >> "./results/sanity_checks_for_instance_public_services.csv"
-    else
-      echo "$bestuursType,$label,$loket_bestuurs_count,$subsidy_bestuurs_count,❌" >> "./results/sanity_checks_for_instance_public_services.csv"
-    fi;
+#     if [ $subsidy_bestuurs_count == $loket_bestuurs_count ]; then
+#       echo "$bestuursType,$label,$loket_bestuurs_count,$subsidy_bestuurs_count,✅" >> "./results/sanity_checks_for_instance_public_services.csv"
+#     else
+#       echo "$bestuursType,$label,$loket_bestuurs_count,$subsidy_bestuurs_count,❌" >> "./results/sanity_checks_for_instance_public_services.csv"
+#     fi;
 
-  done < <(tail -n +2 tmp_select_output/select_non_eredienst_bestuurseenheden_having_instance_public_services.csv)
-fi;
+#   done < <(tail -n +2 tmp_select_output/select_non_eredienst_bestuurseenheden_having_instance_public_services.csv)
+# fi;
 
 echo "[INFO] Count results for public services per bestuurseenheid are in results/sanity_checks_for_instance_public_services.csv"
 
